@@ -1,0 +1,84 @@
+.person_center_title{
+	width: 100%;
+	max-width: 1920px;
+	min-width: 1000px;
+	height: 208px;
+	background: url(../images/person_center_pic.jpg) no-repeat;
+	position: relative;
+}
+
+.person_center_title img{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	bottom: -52px;
+	left: 309px;
+}
+
+.person_center_title p{
+	font-size: 48px;
+	line-height: 48px;
+	color: #FFFFFF;
+	display: block;
+	margin-left: 561px;
+	padding-top: 126px;
+}
+
+.person_center_main{
+	width: 1000px;
+	height: 659px;
+	margin: 66px auto 0;
+}
+
+.person_center_main h1{
+	width: 580px;
+	height: 53px;
+	border-bottom: 1px solid #000000;
+	font-size: 30px;
+	line-height: 53px;
+	margin-left: 53px;
+	text-indent: 5px;
+	overflow: hidden;
+}
+
+.person_center_main h1 span{
+	font-size: 14px;
+	color: #da4d4d;
+	float: right;
+	line-height: 80px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.person_center_main p:nth-of-type(1){
+	margin-top: 73px;
+}
+
+.person_center_main_information{
+	width: 188px;
+	font: 18px "微软雅黑";
+	display: inline-block;
+	text-align: right;
+	margin-bottom: 63px;
+}
+
+.person_center_main_message{
+	display: inline-block;
+	width: 563px;
+	height: 30px;
+	position: relative;
+	margin-left: 75px;
+}
+
+#person_center_main_message_txt1,#person_center_main_message_txt2,#person_center_main_message_txt3,#person_center_main_message_txt4,
+#person_center_main_message_txt5,#person_center_main_message_txt6{
+	width: 356px;
+	height: 23px;
+	border: 1px solid #000000;
+	position: absolute;
+	top: 4px;
+	left: 0;
+	display: none;
+}
+
+

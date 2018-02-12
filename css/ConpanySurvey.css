@@ -1,0 +1,74 @@
+.Icon{
+	width: 100%;
+	max-width: 1920px;
+	min-width: 1000px;
+	height: 225px;
+	position: relative;
+}
+
+.Icon_line{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	width: 42%;
+	height: 50%;
+	border-bottom: 2px solid #2896ce;
+	float: left;
+}
+
+.Icon_line2{
+	float: right;
+}
+
+.Icon_pic{
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 13%;
+	z-index: 100;
+}
+
+.CC_main1, .CC_main2{
+	margin: 26px auto 0;
+	width: 100%;
+	max-width: 1920px;
+	min-width: 1000px;
+}
+
+.CC_main1 > img, .CC_main2 > img{
+	width: 100%;
+}
+
+.CC_main2{
+	margin: 76px auto 0; 
+}
+
+.CC_main3{
+	margin: 45px auto 0;
+	width: 100%;
+	height: 570px;
+}
+
+.CC_main3_center{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.CC_main3_center h1{
+	font-size: 24px;
+	margin-left: 18px;
+	line-height: 24px;
+	margin-bottom: 24px;
+}
+
+.CC_main3_center img{
+	display: block;
+	margin: 0 auto 20px;
+}
+
+.CC_main3_center p{
+	font-size: 14px;
+	line-height: 14px;
+	text-align: center;
+}

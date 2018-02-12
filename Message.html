@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>留言板</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/Message.css"/>
+		
+		<script type="text/javascript" src="js/Graduation_design.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				 User();
+				var str1 = ''; 
+//				判断cookie是否存在
+				var c_start=document.cookie.indexOf('username' + "=");  
+				if(c_start == -1){ 
+ 					$('#register').css('display','block');
+ 					$('#entry').css('display','block');
+ 					$('#user_name').css('display','none');
+ 					$('#user_center').css('display','none');
+ 					$('#car').css('display','none');
+ 					$('#leave').css('display','none');
+				}  
+				else{  
+				 	$('#register').css('display','none');
+ 					$('#entry').css('display','none');
+ 					$('#user_name').css('display','block');
+ 					$('#user_center').css('display','block');
+ 					$('#car').css('display','block');
+ 					$('#leave').css('display','block');
+				} 
+				
+				$('#Message_btn').click(function(){
+					var str = '<li><p>'+$('#Message_txt').val()+'</p><span></span></li>';
+					
+					$('.Message_box').append(str);
+					$('#Message_txt').val('');
+				})
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<a class="header_logo" href="index.html">
+				<img src="images/logo.png"/>
+			</a>
+			
+			<nav>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="ShoppingMall.html">商城</a></li>
+					<li><a href="NewsRecommend.html">最新推荐</a></li>
+					<li><a href="#" class="nav_foc">留言板</a></li>
+					<li><a href="ConpanySurvey.html">公司概况</a></li>
+					<li><a href="ConpanyCulture.html">企业文化</a></li>
+				</ul>
+				
+				<!--未登录状态-->
+				<a href="#" id="register">快速注册</a>
+				<a href="#" id="entry">请登录</a>
+				
+				<!--已登录状态-->
+			<p id="user_name"><span>会员1478***</span>欢迎您！</p>
+			<a href="person_center.html" id="user_center">[<span>个人中心</span>]</a>
+			<a href="#" id="car"><span></span>购物车</a>
+			<span id="leave">退出</span>
+			</nav>
+			<div class="clear"></div>
+		</header>
+		
+		
+		<div class="Message_main">
+			<div class="Message_title">
+			<p>尊敬的顾客您好！<br />
+我们十分高兴您在万千家具商城中选择了V-HOME,V-HOME这些年的成长离不开广大会员的关照，如果您在购物途中遇到了困难，或者页面存在某些缺陷，欢迎广大会员积极的留言，我们会争取第一时间为您解答或者对页面进行相应的改善！对于您在购物中遇到的不愉快我们感到万分的抱歉！</p>
+			<img class="Message_title_pic" src="images/Message_pic.jpg"/>
+			</div>
+			
+			<div class="Message_question">
+				<h1>常见问题</h1>
+				<h2>如何进行购物？</h2>
+				<p>将选中的商品添加至购物车，结束选购时可前往购物车页面进行确认并完成支付。</p>
+				<h2>下单之后多久发货？</h2>
+				<p>一般会员下单之后由客服确认订单，订单通过之后在下单后的24小时内安排发货（节假日除外）。</p>
+				<h2>发什么物流？</h2>
+				<p>所有家具在经过包装处理之后交由德邦物流公司安排发货，届时会及时提供快递单号，各位会员
+能在已买列表中查看物流状态，也可以复制快递单号到德邦官网查询。</p>
+				<h2>如果快递有破损怎么办？</h2>
+				<p>如果破损未波及家具本体，建议会员们尽可放心签收。毕竟家具体积较大，我们已经尽量给每一
+件家具做了全面的包装，但是货车运输途中难免会有磨损，没有办法保证每一件家具都完好无损。
+如果您实在无法接受，可以及时给我们留言，提供订单号，核对无误后，将家具快递返还，我们将
+报销您的快递费用。</p>
+				<h2>会不会出现拍下之后出现库存不足而无法发货的情况？</h2>
+				<p>不会，出现在商城页面的每一件家具都是库存充足的，库存不足的家具会被下架，所以会员们大可
+放心选购。</p>
+			</div>
+		</div>
+		
+		<ul class="Message_box">
+			<!--<li><p>你好吗你好吗</p><span></span></li>-->
+		</ul>
+		
+		<div class="Message_write">
+			<textarea id="Message_txt" placeholder="请在这里填写问题的详细情况..."></textarea>
+			<input type="button" name="Message_btn" id="Message_btn" value="提交" />
+		</div>
+		
+		<!--黑色背景-->
+		<div id="dark_bg"></div>
+		<!--登录界面-->
+		<div id="user_entry">
+			<h1>账号登录<span class="close">返回</span></h1>
+			<p>手机/邮箱登录：</p><input type="text" name="user_entry_text" id="user_entry_text" value="" /><br />
+			<p>密码：</p><input type="password" name="user_entry_password" id="user_entry_password" value="" />
+			<p id="sign_in_tips"></p>
+			<input type="button" name="user_entry_btn" id="user_entry_btn" value="登录" />
+			
+			<span id="fast_registration">快速注册</span>
+			<span id="forget_password">忘记密码</span>
+			
+		</div>
+		
+		<!--登录成功界面-->
+		<div id="user_entry_in">
+			<p>登录成功！</p>
+			<span></span>
+			<p>将在 <span id="user_entry_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--快速注册-->
+		<div id="user_register">
+			<h1>快速注册<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="user_register_text" id="user_register_text" value="" placeholder="请输入手机号"/><br />
+			<p>密码：</p><input type="password" name="user_register_password" id="user_register_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level"></span><br />
+			<p>确认密码：</p><input type="password" name="user_register_password" id="user_register_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<span id="user_register_tips1"></span>
+			<span id="user_register_tips2"></span>
+			<span id="user_register_tips3"></span>
+			<!--全部条件满足时，按钮变为蓝色,鼠标移经时变为手型-->
+			<input type="button" name="user_register_btn" id="user_register_btn" value="注册" />
+		</div>
+		
+		<!--购买成功-->
+		<div id="Buy_success">
+			<p>购买成功！</p>
+			<span></span>
+			<p>将在 <span id="Buy_success_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--忘记密码-->
+		<div id="forget_password_page">
+			<h1>忘记密码<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="forget_password_page_text" id="forget_password_page_text" value="" placeholder="请输入手机号"/><br />
+			<p>验证码：</p><input type="text" name="Verification_Code_text" id="Verification_Code_text" value="" /><input type="button" name="" id="Verification_Code" value="获取验证码" /><span id="forget_password_page_tip">验证码错误!</span><br />
+			<p>新密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level">弱</span><br />
+			<p>确认密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<input type="button" name="forget_password_page_btn" id="forget_password_page_btn" value="完成" />
+			<span id="forget_password_page_tip2">验证码不能为空！</span>
+			<span id="forget_password_page_tip3">不能输入空格或其他非法字符！</span>
+			<span id="forget_password_page_tip4">两次密码不一致，请重新输入！</span>
+		</div>
+		
+		<!--修改密码成功-->
+		<div id="change_password">
+			<p>修改成功！</p>
+			<span></span>
+			<p>将在 <span id="change_password_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--注册成功-->
+		<div id="user_register_in">
+			<p>注册成功！</p>
+			<span></span>
+			<p>将在 <span id="user_register_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<footer>
+			<p>联系电话</p>
+			<p>0771-12345678</p>
+			<p>友情链接</p>
+			<ul>
+				<li><a href="#">淘宝网</a>|</li>
+				<li><a href="#">天猫</a>|</li>
+				<li><a href="#">聚划算</a>|</li>
+				<li><a href="#">1688</a>|</li>
+				<li><a href="#">阿里妈妈</a>|</li>
+				<li><a href="#">飞猪</a>|</li>
+				<li><a href="#">YunOS</a>|</li>
+				<li><a href="#">阿里通信</a>|</li>
+				<li><a href="#">万网</a>|</li>
+				<li><a href="#">高德</a>|</li>
+				<li><a href="#">友盟</a>|</li>
+				<li><a href="#">虾米</a>|</li>
+				<li><a href="#">阿里星球</a>|</li>
+				<li><a href="#">来往</a>|</li>
+				<li><a href="#">钉钉</a>|</li>
+				<li><a href="#">支付宝</a></li>
+			</ul>
+			<p>© 2010-2017 V-HOME 版权所有，并保留所有权利</p>
+			<p>ICP备案证书号：桂ICP备08008334号</p>
+
+		</footer>
+	</body>
+</html>

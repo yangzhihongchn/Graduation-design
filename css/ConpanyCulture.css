@@ -1,0 +1,200 @@
+.Icon{
+	width: 100%;
+	max-width: 1920px;
+	min-width: 1000px;
+	height: 225px;
+	position: relative;
+}
+
+.Icon_line{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	width: 42%;
+	height: 50%;
+	border-bottom: 2px solid #183883;
+	float: left;
+}
+
+.Icon_line2{
+	float: right;
+}
+
+.Icon_pic{
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 13%;
+	z-index: 100;
+}
+
+.CC_main{
+	width: 80%;
+	max-width: 1920px;
+	min-width: 1000px;
+	margin: 0 auto;
+}
+
+.CC_main1, .CC_main2{
+	width: 100%;
+	max-width: 1920px;
+	height: 525px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.CC_main1_p1, .CC_main1_p2, .CC_main1_p3,
+.CC_main2_p1, .CC_main2_p2, .CC_main2_p3{
+	width: 33.33%;
+	height: 100%;
+	float: left;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	position: relative;
+}
+
+.CC_main1_p1{
+	border: 1px solid #f39800;
+}
+
+.CC_main1_p2{
+	border: 1px solid #afa28d;
+}
+
+.CC_main1_p3{
+	border: 1px solid #5e513b;
+}
+
+.CC_main2_p1{
+	border: 1px solid #00f300;
+}
+
+.CC_main2_p2{
+	border: 1px solid #1f9f1f;
+}
+
+.CC_main2_p3{
+	border: 1px solid #104610;
+}
+
+.CC_main1_p1:after, .CC_main1_p2:after, .CC_main1_p3:after,
+.CC_main2_p1:after, .CC_main2_p2:after, .CC_main2_p3:after{
+	content: '';
+	width: 100%;
+	height: 100px;
+	background: #f39800;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.CC_main1_p2:after{
+	background: #afa28d;
+}
+
+.CC_main1_p3:after{
+	background: #5e513b;
+}
+
+.CC_main2_p1:after{
+	background: #00f300;
+}
+
+.CC_main2_p2:after{
+	background: #1f9f1f;
+}
+
+.CC_main2_p3:after{
+	background: #104610;
+}
+
+.CC_main span{
+	margin: 126px auto 0;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	display: block;
+}
+
+.CC_main1_p1 span{
+	background: url(../images/CompanyCulture_p1.jpg) no-repeat -22px 0;
+}
+
+.CC_main1_p2 span{
+	background: url(../images/CompanyCulture_p2.jpg) no-repeat -231px -126px;
+}
+
+.CC_main1_p3 span{
+	background: url(../images/CompanyCulture_p3.jpg) no-repeat -131px -36px;
+}
+
+.CC_main2_p1 span{
+	background: url(../images/CompanyCulture_p4.jpg) no-repeat -175px 0;
+}
+
+.CC_main2_p2 span{
+	background: url(../images/CompanyCulture_p5.jpg) no-repeat -96px 0;
+}
+
+.CC_main2_p3 span{
+	background: url(../images/CompanyCulture_p6.jpg) no-repeat -83px -440px;
+}
+
+.CC_main h1{
+	font-size: 24px;
+	margin: 10px auto 12px;
+}
+
+.CC_main1_p1 h1{
+	color: #f39800;
+}
+
+.CC_main1_p2 h1{
+	color: #afa28d;
+}
+
+.CC_main1_p3 h1{
+	color: #5e513b;
+}
+
+.CC_main2_p1 h1{
+	color: #00f300;
+}
+
+.CC_main2_p2 h1{
+	color: #1f9f1f;
+}
+
+.CC_main2_p3 h1{
+	color: #104610;
+}
+
+.CC_main p{
+	font-size: 16px;
+}
+
+.CC_main1_p1 p{
+	color: #f39800;
+}
+
+.CC_main1_p2 p{
+	color: #afa28d;
+}
+
+.CC_main1_p3 p{
+	color: #5e513b;
+}
+
+.CC_main2_p1 p{
+	color: #00f300;
+}
+
+.CC_main2_p2 p{
+	color: #1f9f1f;
+}
+
+.CC_main2_p3 p{
+	color: #104610;
+}

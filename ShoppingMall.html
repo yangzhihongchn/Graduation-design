@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商城</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/ShoppingMall.css"/>
+		
+		<script type="text/javascript" src="js/Graduation_design.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				 User();
+				 sec_nav();
+				 Tab();
+				 Tab2();
+				 Shopping_Car_In();
+				 Page();
+//				判断cookie是否存在
+				var c_start=document.cookie.indexOf('username' + "=");  
+				if(c_start == -1){ 
+ 					$('#register').css('display','block');
+ 					$('#entry').css('display','block');
+ 					$('#user_name').css('display','none');
+ 					$('#user_center').css('display','none');
+ 					$('#car').css('display','none');
+ 					$('#leave').css('display','none');
+				}  
+				else{  
+				 	$('#register').css('display','none');
+ 					$('#entry').css('display','none');
+ 					$('#user_name').css('display','block');
+ 					$('#user_center').css('display','block');
+ 					$('#car').css('display','block');
+ 					$('#leave').css('display','block');
+				} 
+
+			}	
+				
+		</script>
+		
+	</head>
+	<body>
+		<header>
+			<a class="header_logo" href="index.html">
+				<img src="images/logo.png"/>
+			</a>
+			
+			<nav>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="#" class="nav_foc">商城</a></li>
+					<li><a href="NewsRecommend.html">最新推荐</a></li>
+					<li><a href="Message.html">留言板</a></li>
+					<li><a href="ConpanySurvey.html">公司概况</a></li>
+					<li><a href="ConpanyCulture.html">企业文化</a></li>
+				</ul>
+				
+				<!--未登录状态-->
+				<a href="#" id="register">快速注册</a>
+				<a href="#" id="entry">请登录</a>
+				
+				<!--已登录状态-->
+				<p id="user_name"><span>会员1478***</span>欢迎您！</p>
+				<a href="person_center.html" id="user_center">[<span>个人中心</span>]</a>
+				<a href="#" id="car"><span></span>购物车</a>
+				<span id="leave">退出</span>
+			</nav>
+			<div class="clear"></div>
+		</header>
+		
+		<div class="sec_nav">
+			<ul>
+				<li class="sec_nav_in">沙发</li>
+				<li>电视柜</li>
+				<li>鞋柜</li>
+				<li>衣柜</li>
+				<li>茶几/边桌</li>
+				<li>单/双人床</li>
+				<li>餐桌</li>
+				<li>灯饰</li>
+				<li>床垫</li>
+				<li>椅/凳</li>
+			</ul>
+		</div>
+		
+		<div class="Shopping_Mall_main">
+			
+				<table id="Shopping_Mall_main_table">
+					<tr>
+						<th>品牌</th>
+						<td><ul id="Shopping_Mall_main_ul1">
+							<li class="pointer">全部</li>
+							<li>凯撒豪庭</li>
+							<li>蓝骑家居</li>
+							<li>良品LIFE</li>
+							<li>蒂美悦</li>
+							<li>彼岸阳光</li>
+							<li>百年美</li>
+							<li>北欧悠歌</li>
+							<li>其他</li>
+						</ul></td>
+					</tr>
+					
+					<tr>
+						<th>价位</th>
+						<td><ul id="Shopping_Mall_main_ul2">
+							<li class="pointer1">全部</li>
+							<li>1000以下</li>
+							<li>1001-2000</li>
+							<li>2001-3000</li>
+							<li>3001-4000</li>
+							<li>4001-5000</li>
+							<li>5001-6000</li>
+							<li>6001-7000</li>
+							<li>7001-8000</li>
+							<li>8000以上</li>
+						</ul></td>
+					</tr>
+						
+					<tr>
+						<th>类型</th>
+						<td><ul>
+							<li class="pointer2">全部</li>
+							<li>套装</li>
+							<li>单品</li>
+						</ul></td>
+					</tr>
+					
+					<tr>
+						<th>材质</th>
+						<td><ul>
+							<li class="pointer3">全部</li>
+							<li>实木</li>
+							<li>皮艺</li>
+							<li>布艺</li>
+							<li>坂木</li>
+							<li>红木</li>
+							<li>棉麻</li>
+							<li>其他材质</li>
+						</ul></td>
+					</tr>
+					
+					<tr>
+						<th>优惠</th>
+						<td><ul>
+							<li class="pointer4">全部</li>
+							<li>优惠</li>
+						</ul></td>
+					</tr>
+				</table>
+			
+			<div class="Shopping_Mall_main_goods">
+				<ul id="goods">
+					<li>
+						<div class="goods_pic goods_pic1"></div>
+						<h1>[<span class="goods_brand1">凯撒豪庭</span>] <span class="goods_information1">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name1">沙发</span></h1>
+						<h2 class="goods_money1">￥ 1999.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic2"></div>
+						<h1>[<span class="goods_brand2">蓝骑家居</span>] <span class="goods_information2">现代风格 名流之选 巴西进口头层黄牛皮</span><span class="goods_name2">沙发</span></h1>
+						<h2 class="goods_money2">￥ 6515.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic3"></div>
+						<h1>[<span class="goods_brand3">良品LIFE</span>] <span class="goods_information3">纯手工实木美人鱼雕花 高档提花刺绣雪尼尔绒布</span><span class="goods_name3">沙发</span></h1>
+						<h2 class="goods_money3">￥ 3333.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic4"></div>
+						<h1>[<span class="goods_brand4">蒂美悦</span>] <span class="goods_information4">简美风格 沙发套装 典雅舒适 进口橡胶木 高弹海棉 </span><span class="goods_name4">沙发</span></h1>
+						<h2 class="goods_money4">￥ 899.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic5"></div>
+						<h1>[<span class="goods_brand5">彼岸阳光</span>] <span class="goods_information5">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name5">沙发</span></h1>
+						<h2 class="goods_money5">￥ 7051.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic6"></div>
+						<h1>[<span class="goods_brand6">彼岸阳光</span>] <span class="goods_information6">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name6">沙发</span></h1>
+						<h2 class="goods_money6">￥ 8624.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic7"></div>
+						<h1>[<span class="goods_brand7">彼岸阳光</span>] <span class="goods_information7">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name7">沙发</span></h1>
+						<h2 class="goods_money7">￥ 568.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic8"></div>
+						<h1>[<span class="goods_brand8">百年美</span>] <span class="goods_information8">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name8">沙发</span></h1>
+						<h2 class="goods_money8">￥ 3057.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic9"></div>
+						<h1>[<span class="goods_brand9">百年美</span>] <span class="goods_information9">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name9">沙发</span></h1>
+						<h2 class="goods_money9">￥ 1069.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic10"></div>
+						<h1>[<span class="goods_brand10">百年美</span>] <span class="goods_information10">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name10">沙发</span></h1>
+						<h2 class="goods_money10">￥ 8899.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic11"></div>
+						<h1>[<span class="goods_brand11">北欧悠歌</span>] <span class="goods_information11">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name11">沙发</span></h1>
+						<h2 class="goods_money11">￥ 9000.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic12"></div>
+						<h1>[<span class="goods_brand12">北欧悠歌</span>] <span class="goods_information12">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name12">沙发</span></h1>
+						<h2 class="goods_money12">￥ 7412.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic13"></div>
+						<h1>[<span class="goods_brand13">北欧悠歌</span>] <span class="goods_information13">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name13">沙发</span></h1>
+						<h2 class="goods_money13">￥ 3654.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic14"></div>
+						<h1>[<span class="goods_brand14">良品LIFE</span>] <span class="goods_information14">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name14">沙发</span></h1>
+						<h2 class="goods_money14">￥ 2487.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic15"></div>
+						<h1>[<span class="goods_brand15">凯撒豪庭</span>] <span class="goods_information15">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name15">沙发</span></h1>
+						<h2 class="goods_money15">￥ 2999.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					<li>
+						<div class="goods_pic goods_pic16"></div>
+						<h1>[<span class="goods_brand16">蓝骑家居</span>] <span class="goods_information16">美式古典 典雅大气 纯手工雕花 美国进口黄杨实木</span><span class="goods_name16">沙发</span></h1>
+						<h2 class="goods_money16">￥ 4051.00</h2>
+						<p>已售<span>3067</span></p>
+						<a href="GoodsDetails.html"></a>
+						<span class="shopping_car_in"><span><img src="images/g1.png"/></span>加入购物车</span>
+					</li>
+					
+					
+				</ul>
+				
+				<div class="goods_page">
+					<input type="button" name="" id="goods_page1" value="上一页" />
+					<input type="button" name="" id="goods_page2" class="goods_page_bg" value="1" />
+					<input type="button" name="" id="goods_page3" value="2" />
+					<input type="button" name="" id="goods_page4" value="3" />
+					<input type="button" name="" id="goods_page5" value="下一页" />
+				</div>
+				
+				<a id="shoppingCar" href="ShoppingCar.html">
+					<span></span>
+				</a>
+				<a id="returnTop" href="#"></a>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		<!--黑色背景-->
+		<div id="dark_bg"></div>
+		<!--登录界面-->
+		<div id="user_entry">
+			<h1>账号登录<span class="close">返回</span></h1>
+			<p>手机/邮箱登录：</p><input type="text" name="user_entry_text" id="user_entry_text" value="" /><br />
+			<p>密码：</p><input type="password" name="user_entry_password" id="user_entry_password" value="" />
+			<p id="sign_in_tips"></p>
+			<input type="button" name="user_entry_btn" id="user_entry_btn" value="登录" />
+			
+			<span id="fast_registration">快速注册</span>
+			<span id="forget_password">忘记密码</span>
+			
+		</div>
+		
+		<!--登录成功界面-->
+		<div id="user_entry_in">
+			<p>登录成功！</p>
+			<span></span>
+			<p>将在 <span id="user_entry_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--快速注册-->
+		<div id="user_register">
+			<h1>快速注册<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="user_register_text" id="user_register_text" value="" placeholder="请输入手机号"/><br />
+			<p>密码：</p><input type="password" name="user_register_password" id="user_register_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level"></span><br />
+			<p>确认密码：</p><input type="password" name="user_register_password" id="user_register_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<span id="user_register_tips1"></span>
+			<span id="user_register_tips2"></span>
+			<span id="user_register_tips3"></span>
+			<!--全部条件满足时，按钮变为蓝色,鼠标移经时变为手型-->
+			<input type="button" name="user_register_btn" id="user_register_btn" value="注册" />
+		</div>
+		
+		<!--购买成功-->
+		<div id="Buy_success">
+			<p>购买成功！</p>
+			<span></span>
+			<p>将在 <span id="Buy_success_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--忘记密码-->
+		<div id="forget_password_page">
+			<h1>忘记密码<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="forget_password_page_text" id="forget_password_page_text" value="" placeholder="请输入手机号"/><br />
+			<p>验证码：</p><input type="text" name="Verification_Code_text" id="Verification_Code_text" value="" /><input type="button" name="" id="Verification_Code" value="获取验证码" /><span id="forget_password_page_tip">验证码错误!</span><br />
+			<p>新密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level">弱</span><br />
+			<p>确认密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<input type="button" name="forget_password_page_btn" id="forget_password_page_btn" value="完成" />
+			<span id="forget_password_page_tip2">验证码不能为空！</span>
+			<span id="forget_password_page_tip3">不能输入空格或其他非法字符！</span>
+			<span id="forget_password_page_tip4">两次密码不一致，请重新输入！</span>
+		</div>
+		
+		<!--修改密码成功-->
+		<div id="change_password">
+			<p>修改成功！</p>
+			<span></span>
+			<p>将在 <span id="change_password_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--注册成功-->
+		<div id="user_register_in">
+			<p>注册成功！</p>
+			<span></span>
+			<p>将在 <span id="user_register_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<footer>
+			<p>联系电话</p>
+			<p>0771-12345678</p>
+			<p>友情链接</p>
+			<ul>
+				<li><a href="#">淘宝网</a>|</li>
+				<li><a href="#">天猫</a>|</li>
+				<li><a href="#">聚划算</a>|</li>
+				<li><a href="#">1688</a>|</li>
+				<li><a href="#">阿里妈妈</a>|</li>
+				<li><a href="#">飞猪</a>|</li>
+				<li><a href="#">YunOS</a>|</li>
+				<li><a href="#">阿里通信</a>|</li>
+				<li><a href="#">万网</a>|</li>
+				<li><a href="#">高德</a>|</li>
+				<li><a href="#">友盟</a>|</li>
+				<li><a href="#">虾米</a>|</li>
+				<li><a href="#">阿里星球</a>|</li>
+				<li><a href="#">来往</a>|</li>
+				<li><a href="#">钉钉</a>|</li>
+				<li><a href="#">支付宝</a></li>
+			</ul>
+			<p>© 2010-2017 V-HOME 版权所有，并保留所有权利</p>
+			<p>ICP备案证书号：桂ICP备08008334号</p>
+
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,808 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品详情页</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/ShoppingMall.css"/>
+		<link rel="stylesheet" type="text/css" href="css/GoodsDetails.css"/>
+		
+		<script type="text/javascript" src="js/Graduation_design.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				 User();
+				 Details();
+//				判断cookie是否存在
+				var c_start=document.cookie.indexOf('username' + "=");  
+				if(c_start == -1){ 
+ 					$('#register').css('display','block');
+ 					$('#entry').css('display','block');
+ 					$('#user_name').css('display','none');
+ 					$('#user_center').css('display','none');
+ 					$('#car').css('display','none');
+ 					$('#leave').css('display','none');
+				}  
+				else{  
+				 	$('#register').css('display','none');
+ 					$('#entry').css('display','none');
+ 					$('#user_name').css('display','block');
+ 					$('#user_center').css('display','block');
+ 					$('#car').css('display','block');
+ 					$('#leave').css('display','block');
+				}
+				
+				function Area(){
+					$.ajax({
+							type:"get",  //请求方式为get，也可以是设置为post
+											
+							url:"Area.json",//所要获取的json文件相对地址，注意不要写错了，我这里放在同一个目录下的
+											
+							async:true,　//是否为异步请求，ture为异步请求，false为同步请求
+											
+							dataType: "json",
+							//当请求之后调用。传入返回后的数据，以及包含成功代码的字符串			
+							success : function(data){
+								
+								if(count == 0){
+											
+									for(var i=0;i<data.length;i++){
+										if(AreaName == data[i].name){
+											num1 = i;
+											$(".address_box span").eq(1).html(data[i].city[0].name);
+											$(".address_box span").eq(2).html(data[i].city[0].area[0]);
+//											alert(data[i].city[0].name);
+															
+										}
+													
+									}
+//										一个括号算一个子集
+										$(".address_box_list").children().detach();
+										for(var j=0;j<data[num1].city.length;j++){
+											$(".address_box_list").append("<li>"+ data[num1].city[j].name +"</li>");
+										}
+											
+						    	}
+								
+								if(count == 1){
+									for(var i=0;i<data[num1].city.length;i++){
+										if(AreaName == data[num1].city[i].name){
+											num2 = i;
+											$(".address_box span").eq(2).html(data[num1].city[i].area[0]);
+										}
+									}
+									
+//										一个括号算一个子集
+										$(".address_box_list").children().detach();
+										for(var j=0;j<data[num1].city[num2].area.length;j++){
+											$(".address_box_list").append("<li>"+ data[num1].city[num2].area[j] +"</li>");
+										}
+								}
+								
+								if(count == 2){
+									$(".address_box_list").children().detach();
+										for(var i=0;i<arr1.length;i++){
+										$(".address_box_list").append("<li>"+ arr1[i] +"</li>");
+									}
+								}
+								
+//										alert(data.length)
+//										alert(data[0].name);
+//										alert(data[0].city[0].area[0]);
+								
+								count++;
+								count %= 3;
+							}
+											
+						})
+				}
+				
+				var count = 0;
+				var AreaName;
+				var Receiving_address = new String();
+				var num1;
+				var num2;			
+				var arr1 = ["北京市","天津市","山西省","内蒙古","辽宁省","吉林省","黑龙江省","江苏省","浙江省","安徽省","福建省","江西省",
+				"山东省","河南省","河北省","湖北省","湖南省","广东省","广西","海南省","重庆市","四川省","贵州省","云南省","西藏","陕西市",
+				"甘肃省","青海省","宁夏","新疆","上海市","台湾省","澳门","香港"];
+				
+//				$(".address_box_list").find("li").each(function(index,elem){
+				$(".address_box_list").delegate("li","click",function(){
+						if(count == 0){
+							AreaName = $(this).html();
+							Receiving_address +=AreaName;
+							$(".address_box1").html(AreaName);
+							$(".address_box span").eq(1).attr("class","address_box1").siblings().attr("class","");
+							Area();
+							
+						}
+						
+						if(count == 1){
+							AreaName = $(this).html();
+							Receiving_address +=AreaName;
+							$(".address_box1").html(AreaName);
+							$(".address_box span").eq(2).attr("class","address_box1").siblings().attr("class","");
+							Area();
+						}
+						
+						if(count == 2){
+							AreaName = $(this).html();
+							Receiving_address +=AreaName;
+							$(".address_box1").html(AreaName);
+							$('.address_box').css('display','none');
+							$(".address_box span").eq(0).attr("class","address_box1").siblings().attr("class","");
+							
+							$("#address").text(Receiving_address);
+							Receiving_address = "";
+							Area();
+						}
+				})
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<a class="header_logo" href="index.html">
+				<img src="images/logo.png"/>
+			</a>
+			
+			<nav>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="ShoppingMall.html" class="nav_foc">商城</a></li>
+					<li><a href="NewsRecommend.html">最新推荐</a></li>
+					<li><a href="Message.html">留言板</a></li>
+					<li><a href="ConpanySurvey.html">公司概况</a></li>
+					<li><a href="ConpanyCulture.html">企业文化</a></li>
+				</ul>
+				
+				<!--未登录状态-->
+				<a href="#" id="register">快速注册</a>
+				<a href="#" id="entry">请登录</a>
+				
+				<!--已登录状态-->
+			<p id="user_name"><span>会员1478***</span>欢迎您！</p>
+			<a href="person_center.html" id="user_center">[<span>个人中心</span>]</a>
+			<a href="#" id="car"><span></span>购物车</a>
+			<span id="leave">退出</span>
+			</nav>
+			<div class="clear"></div>
+			
+		</header>
+		
+		<div class="GD_main">
+			<div class="shopping_information">
+				<div class="shopping_information_left">
+					<div class="shopping_information_max"><img src="images/goodsdetails/min01.jpg"/></div>
+					<div id="enlarge"></div>
+					<span id="GD_last">&lt;</span>
+					<ul class="shopping_information_min">
+						<li class="shopping_information_min_border"><img src="images/goodsdetails/min01.jpg"/></li>
+						<li><img src="images/goodsdetails/min02.jpg"/></li>
+						<li><img src="images/goodsdetails/min03.jpg"/></li>
+						<li><img src="images/goodsdetails/min04.jpg"/></li>
+					</ul>
+					<span id="GD_next">&gt;</span>
+				</div>
+				<div class="shopping_information_right">
+					<h1>[韩菲尔] 韩式田园 温情闲适 白色清新板式酒柜 客厅单门酒柜</h1>
+					<h6>编号：HFE-861#-DMJG</h6>
+					<div class="shopping_information_right_cost">
+						<p>本站价</p>
+						<span id="price">￥3299.00</span>
+						<p>已售&nbsp;<span id="sold">2146</span><br />
+						        评价&nbsp;<span id="message">144</span>
+						</p>
+					</div>
+					
+					<h3>配送
+						<span id="address">广西南宁江南区快环以内</span><span id="address_icon"><img src="images/address_icon1.png"/></span>
+						<span id="freight">查看运费</span>
+						<p>该商品由 <span id="TradeName">VHOME自南宁营旗舰店</span> 发货，并提供售后服务</p>
+					</h3>
+					
+					<h3>类型</h3>
+						
+					<div class="goods_chooes"><span>臻雅格调客厅三件套·畅销款</span><span>0.6米三面式展示酒柜【单门】</span><span>1米三面式展示酒柜【双门】</span></div>
+					
+					<h3>规格<span>长600*宽480*高2000mm</span></h3>
+					
+					<h3>数量</h3>
+					<div class="goods_count">
+						<input type="button" name="" id="goods_add" value="+" />
+						<input type="text" name="goods_num" id="goods_num" value="1" />
+						<input type="button" name="" id="goods_reduce" value="-" />
+					</div>
+					<div class="clear"></div>
+					<h3>服务承诺<span>45天退换</span><span>质保一年</span><span>贵就赔</span></h3>
+					
+					<input type="button" name="shopping_information_right_btn1" id="shopping_information_right_btn1" value="加入购物车" />
+					
+					<input type="button" name="shopping_information_right_btn2" id="shopping_information_right_btn2" value="立即购买" />
+					
+					<div class="address_box" style="display: none;">
+						<p>
+							<span class="address_box1">广西</span>
+							<span>南宁</span>
+							<span>江南区</span>
+						</p>
+						
+						<ul class="address_box_list">
+							<li>北京市</li>
+							<li>天津市</li>
+							<li>山西省</li>
+							<li>内蒙古</li>
+							<li>辽宁省</li>
+							<li>吉林省</li>
+							<li>黑龙江省</li>
+							<li>江苏省</li>
+							<li>浙江省</li>
+							<li>安徽省</li>
+							<li>福建省</li>
+							<li>江西省</li>
+							<li>山东省</li>
+							<li>河南省</li>
+							<li>河北省</li>
+							<li>湖北省</li>
+							<li>湖南省</li>
+							<li>广东省</li>
+							<li>广西</li>
+							<li>海南省</li>
+							<li>重庆市</li>
+							<li>四川省</li>
+							<li>贵州省</li>
+							<li>云南省</li>
+							<li>西藏</li>
+							<li>陕西市</li>
+							<li>甘肃省</li>
+							<li>青海省</li>
+							<li>宁夏</li>
+							<li>新疆</li>
+							<li>上海市</li>
+							<li>台湾省</li>
+							<li>澳门</li>
+							<li>香港</li>
+						</ul>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<ul id="GD_main_list">
+					<li class="GD_main_list_status">商品详情</li>
+					<li>规格参数</li>
+					<li>评价<span id="GD_main_evaluate">144</span></li>
+					<li>已售<span id="GD_main_evaluate_sold">2146</span></li>
+					<li>服务保障</li>
+				</ul>
+				
+			<div class="goods_message1">
+				<ul id="goods_message1_list">
+					<li>商品编号：<span id="goods_message1_list1">HFE-861#-DMJG</span></li>
+					<li>商品材质：<span id="goods_message1_list2">板式</span></li>
+					<li>商品品牌：<span id="goods_message1_list3">韩菲尔</span></li>
+					<li>商品体积：<span id="goods_message1_list4">0.3</span>m<sup>3</sup></li>
+					<li>商品清单：<span id="goods_message1_list5">单门酒柜</span></li>
+					<li>产地：<span id="goods_message1_list6">广东佛山</span></li>
+				</ul>
+				
+				<img id="goods_message1_pic1" src="images/首页1-1/01.jpg"/>
+				<img id="goods_message1_pic2" src="images/首页1-1/02.jpg"/>
+				<img id="goods_message1_pic3" src="images/首页1-1/03.jpg"/>
+				<img id="goods_message1_pic4" src="images/首页1-1/04.jpg"/>
+				
+			</div>
+			
+			<div class="goods_message2">
+				<h5>基本信息</h5>
+				<p>品牌:<span id="goods_message2_list1">卡富亚</span></p>
+				<p>型号:<span id="goods_message2_list2">KFY-CO-Z001-18C</span></p>
+				<p>风格:<span id="goods_message2_list3">现代风格</span></p>
+				<p>包件:<span id="goods_message2_list4">3件</span></p>
+				<p>体积:<span id="goods_message2_list5">1.3</span>m<sup>3</sup></p>
+				<p>产地:<span id="goods_message2_list6">广东佛山</span></p>
+				<p>产品包含:<span id="goods_message2_list7">1.8米床</span></p>
+				
+				<h5>产品构造</h5>
+				<p>床头:<span id="goods_message2_list8">头层珠光水牛皮+高密度海绵+桉木</span></p>
+				<p>床侧:<span id="goods_message2_list9">珠光仿皮+高密度海绵</span></p>
+				<p>床尾:<span id="goods_message2_list10">珠光仿皮+高密度海绵+桉木</span></p>
+				<p>床脚:<span id="goods_message2_list11">铁质</span></p>
+				<p>床结构:<span id="goods_message2_list12">排骨架</span></p>
+				<p>内架:<span id="goods_message2_list13">MDF板，整装排骨架</span></p>
+				
+				<h5>产品优势</h5>
+				<p>设计理念:<span id="goods_message2_list14">恰到好处的奢华，不落俗套的品味，打造简约舒适、优雅精致的潮流人生。</span></p>
+				<p>选材优质:<span id="goods_message2_list15">高档头层珠光真皮，色泽莹润，柔韧透气；精选优质实木框架，承重力强。</span></p>
+				<p>功能特征:<span id="goods_message2_list16">可拆式床头靠包，拉链设计，拆卸自如，方便清洁；双五金支撑脚，完美承重，幸福升级。</span></p>
+				
+				<h5>其他信息</h5>
+				<p>运费情况:<span id="goods_message2_list17">买家承担运费，物流费用按体积计算！详情请咨询在线客服！</span></p>
+				<p>送货安装:<span id="goods_message2_list18">仓库覆盖区域可付费送货+安装服务，非仓库覆盖区域可物流点自提自安装，组装图纸随物流一起运输</span></p>
+				<p>保养说明:<span id="goods_message2_list19">1.建议春、秋两季用皮革柔软剂进行护理；2.尽量避免阳光的直射。</span></p>
+				
+			</div>
+			
+			<div class="goods_message3">
+				<ul class="goods_message3_list1">
+					<li class="goods_message3_list1_status">全部评价(<span>1375</span>)</li>
+					<li>满意(<span>1371</span>)</li>
+					<li>一般(<span>4</span>)</li>
+					<li>不满意(<span>0</span>)</li>
+				</ul>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+				</div>
+				
+				<div class="goods_message3_evaluate">
+					<div class="goods_message3_evaluate_user">
+						<img id="goods_message3_evaluate_user_pic" src="images/goods_message3_evaluate_user_pic.png"/>
+						<p id="goods_message3_evaluate_user_name">会员1564***</p>
+					</div>
+					
+					<div class="goods_message3_evaluate_main">
+						<span id="goods_message3_evaluate_star"><img src="images/5star.png"/></span><span id="goods_message3_evaluate_level">5分</span>
+						<p class="goods_message3_evaluate_word">床很舒服，款式也很漂亮，很满意的购物，朋友推荐的，V-HOME不错！</p>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic1.jpg"/>
+						<img id="goods_message3_evaluate_main_pic" src="images/goods_message3_evaluate_main_pic2.jpg"/>
+						
+					</div>
+					
+						<p><span id="goods_message3_evaluate_main_date">2017-10-25 <span id="goods_message3_evaluate_main_time">13:26:39</span></span>发布</p>
+						<div class="goods_message3_evaluate_main_btn">
+							<span></span>有用(<span id="goods_message3_evaluate_main_num">0</span>)
+						</div>
+						
+						
+						
+				</div>
+				
+				<div class="goods_page goods_detail_page">
+					<input type="button" name="" id="goods_page1" value="上一页" />
+					<input type="button" name="" id="goods_page2" value="1" />
+					<input type="button" name="" id="goods_page3" value="2" />
+					<input type="button" name="" id="goods_page4" value="3" />
+					<input type="button" name="" id="goods_page5" value="下一页" />
+				</div>
+				
+				<a id="returnTop" href="#"></a>
+				
+			</div>
+				                                    	                                           
+			<div class="goods_message4">
+				<table id="goods_message4_table" border="" cellspacing="" cellpadding="">
+					<tr>
+						<th>会员名</th>
+						<th>商品名称</th>
+						<th>地址</th>
+						<th>件数</th>
+						<th>成交时间</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+					
+					<tr>
+						<th>会员1267******</th>
+						<th>人气爆款 可拆卸靠包 精选头层****</th>
+						<th>北京密码2号*************	</th>
+						<th>1</th>
+						<th>2017年11月08日</th>
+					</tr>
+				</table>
+				
+				<div class="goods_page goods_detail_page2">
+					<input type="button" name="" id="goods_page1" value="上一页" />
+					<input type="button" name="" id="goods_page2" value="1" />
+					<input type="button" name="" id="goods_page3" value="2" />
+					<input type="button" name="" id="goods_page4" value="3" />
+					<input type="button" name="" id="goods_page5" value="下一页" />
+				</div>
+			</div>
+			
+			<div class="goods_message5">
+				<p>配送服务</p>
+				<p>我们提供体验馆配送、物流点自提、快递运输三种配送方式，您可根据需求选择最合适的配送服务。</p>
+				<img class="goods_message5_logistics" src="images/logistics.jpg"/>
+				<ul>
+					<li>
+						<span class="goods_message5_logistics_pic"></span>
+						<h5>体验馆配送——贴心</h5>
+						<p>我们建议您选择体验馆配送安装，体验馆负责安排物流运输、送货、专业安装整个流程；<br />
+						1、&nbsp;如无法使用电梯，须人力搬运，从第4层起将收取一定的搬运费；<br />
+						2、&nbsp;收货地点存在特殊情况(如垄断搬运服务、电梯或楼道太小、房门太窄、施工故障、道路修建、校区不支持货车进入或停留等)请事先向客服或体验馆工作人员说明。</p>
+					</li>
+					
+					<li>
+						<span class="goods_message5_logistics_pic goods_message5_logistics_pic2"></span>
+						<h5>物流点自提——方便</h5>
+						<p>货物将从发货地送到您所在城市的物流点，需要您到指定的物流点自提。胡六点提货时请注意携带本人身份证原件，如需他人代收请提前告知具体签收注意事项。详见<span>《收货指南》</span></p>
+					</li>
+					
+					<li>
+						<span class="goods_message5_logistics_pic goods_message5_logistics_pic3"></span>
+						<h5>快递运输——快捷</h5>
+						<p>由快递公司送货到您所留的收货地址楼下。请您务必在签收前当场拆包检查，如有购买多件商品请一定拆开清点件数，拆包后如发现商品损坏请当场拒收并及时与我们联系，商品货损与总件数以您签收为准，如果条件允许请您拍照取证</p>
+					</li>
+				</ul>
+				<p>贴心包装</p>
+				<img id="goods_message5_logistics_pic2" src="images/goods_message5_logistics_pic2.jpg"/>
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>
+		
+		<p id="add_success"><span></span>添加成功</p>
+		
+		<!--黑色背景-->
+		<div id="dark_bg"></div>
+		<!--登录界面-->
+		<div id="user_entry">
+			<h1>账号登录<span class="close">返回</span></h1>
+			<p>手机/邮箱登录：</p><input type="text" name="user_entry_text" id="user_entry_text" value="" /><br />
+			<p>密码：</p><input type="password" name="user_entry_password" id="user_entry_password" value="" />
+			<p id="sign_in_tips"></p>
+			<input type="button" name="user_entry_btn" id="user_entry_btn" value="登录" />
+			
+			<span id="fast_registration">快速注册</span>
+			<span id="forget_password">忘记密码</span>
+			
+		</div>
+		
+		<!--登录成功界面-->
+		<div id="user_entry_in">
+			<p>登录成功！</p>
+			<span></span>
+			<p>将在 <span id="user_entry_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--快速注册-->
+		<div id="user_register">
+			<h1>快速注册<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="user_register_text" id="user_register_text" value="" placeholder="请输入手机号"/><br />
+			<p>密码：</p><input type="password" name="user_register_password" id="user_register_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level"></span><br />
+			<p>确认密码：</p><input type="password" name="user_register_password" id="user_register_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<span id="user_register_tips1"></span>
+			<span id="user_register_tips2"></span>
+			<span id="user_register_tips3"></span>
+			<!--全部条件满足时，按钮变为蓝色,鼠标移经时变为手型-->
+			<input type="button" name="user_register_btn" id="user_register_btn" value="注册" />
+		</div>
+		
+		<!--购买成功-->
+		<div id="Buy_success">
+			<p>购买成功！</p>
+			<span></span>
+			<p>将在 <span id="Buy_success_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--忘记密码-->
+		<div id="forget_password_page">
+			<h1>忘记密码<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="forget_password_page_text" id="forget_password_page_text" value="" placeholder="请输入手机号"/><br />
+			<p>验证码：</p><input type="text" name="Verification_Code_text" id="Verification_Code_text" value="" /><input type="button" name="" id="Verification_Code" value="获取验证码" /><span id="forget_password_page_tip">验证码错误!</span><br />
+			<p>新密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level">弱</span><br />
+			<p>确认密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<input type="button" name="forget_password_page_btn" id="forget_password_page_btn" value="完成" />
+			<span id="forget_password_page_tip2">验证码不能为空！</span>
+			<span id="forget_password_page_tip3">不能输入空格或其他非法字符！</span>
+			<span id="forget_password_page_tip4">两次密码不一致，请重新输入！</span>
+		</div>
+		
+		<!--修改密码成功-->
+		<div id="change_password">
+			<p>修改成功！</p>
+			<span></span>
+			<p>将在 <span id="change_password_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--注册成功-->
+		<div id="user_register_in">
+			<p>注册成功！</p>
+			<span></span>
+			<p>将在 <span id="user_register_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<footer>
+			<p>联系电话</p>
+			<p>0771-12345678</p>
+			<p>友情链接</p>
+			<ul>
+				<li><a href="#">淘宝网</a>|</li>
+				<li><a href="#">天猫</a>|</li>
+				<li><a href="#">聚划算</a>|</li>
+				<li><a href="#">1688</a>|</li>
+				<li><a href="#">阿里妈妈</a>|</li>
+				<li><a href="#">飞猪</a>|</li>
+				<li><a href="#">YunOS</a>|</li>
+				<li><a href="#">阿里通信</a>|</li>
+				<li><a href="#">万网</a>|</li>
+				<li><a href="#">高德</a>|</li>
+				<li><a href="#">友盟</a>|</li>
+				<li><a href="#">虾米</a>|</li>
+				<li><a href="#">阿里星球</a>|</li>
+				<li><a href="#">来往</a>|</li>
+				<li><a href="#">钉钉</a>|</li>
+				<li><a href="#">支付宝</a></li>
+			</ul>
+			<p>© 2010-2017 V-HOME 版权所有，并保留所有权利</p>
+			<p>ICP备案证书号：桂ICP备08008334号</p>
+
+		</footer>
+	</body>
+</html>

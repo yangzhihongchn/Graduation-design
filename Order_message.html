@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>查看订单</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/ShoppingCar.css"/>
+		
+		<script type="text/javascript" src="js/Graduation_design.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				 User();
+				
+//				判断cookie是否存在
+				var c_start=document.cookie.indexOf('username' + "=");  
+				if(c_start == -1){ 
+ 					$('#register').css('display','block');
+ 					$('#entry').css('display','block');
+ 					$('#user_name').css('display','none');
+ 					$('#user_center').css('display','none');
+ 					$('#car').css('display','none');
+ 					$('#leave').css('display','none');
+				}  
+				else{  
+				 	$('#register').css('display','none');
+ 					$('#entry').css('display','none');
+ 					$('#user_name').css('display','block');
+ 					$('#user_center').css('display','block');
+ 					$('#car').css('display','block');
+ 					$('#leave').css('display','block');
+				}  
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<a class="header_logo" href="index.html">
+				<img src="images/logo.png"/>
+			</a>
+			
+			<nav>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="ShoppingMall.html" class="nav_foc">商城</a></li>
+					<li><a href="NewsRecommend.html">最新推荐</a></li>
+					<li><a href="Message.html">留言板</a></li>
+					<li><a href="ConpanySurvey.html">公司概况</a></li>
+					<li><a href="ConpanyCulture.html">企业文化</a></li>
+				</ul>
+				
+				<!--未登录状态-->
+				<a href="#" id="register">快速注册</a>
+				<a href="#" id="entry">请登录</a>
+				
+				<!--已登录状态-->
+			<p id="user_name"><span>会员1478***</span>欢迎您！</p>
+			<a href="person_center.html" id="user_center">[<span>个人中心</span>]</a>
+			<a href="#" id="car"><span></span>购物车</a>
+			<span id="leave">退出</span>
+			</nav>
+			<div class="clear"></div>
+			
+		</header>
+		
+		
+		<!--查看订单-->
+		<div class="ShoppingCar_main Order_message_main">
+			<p class="ShoppingCar_title Order_message_title">订单详情<span></span></p>
+			
+			<table id="Order_message_table"  border="" cellspacing="" cellpadding="">
+				<tr>
+					<th>宝贝名称</th>
+					<th>[韩菲尔] 韩式田园 温情闲适 白色清新板式酒柜 客厅单门酒柜</th>
+				</tr>
+				
+				<tr>
+					<th>规格</th>
+					<th>默认</th>
+				</tr>
+				
+				<tr>
+					<th>服务</th>
+					<th>7天全额退款+45天无条件更换</th>
+				</tr>
+				
+				<tr>
+					<th>订单创建时间</th>
+					<th>2017-7-10 08:24:33</th>
+				</tr>
+				
+				<tr>
+					<th>订单号</th>
+					<th>12345646541151235313153153</th>
+				</tr>
+				
+				<tr>
+					<th>物流信息</th>
+					<th>
+						2017-7-10 08:24:33创建订单<br />
+						2017-7-10 08:26:20核对订单无误，准备安排发货<br />
+						2017-7-10 08:26:20您的订单移交至最近的苏州仓库，准备出库<br />
+						2017-7-10 09:06:46移交[德邦物流]快递公司，稍后提交订单号<br />
+						2017-7-10 09:06:46物流接收成功，订单号12345646541151235313153153<br />
+						2017-7-10 09:06:46正在装配，目的地广州佛山<br />
+						2017-7-10 09:06:46物流运输中，当前位置[苏州物流集中仓]<br />
+						2017-7-10 09:06:46[苏州物流集中仓]已发出，下一站[虎门转站仓]<br />
+						2017-7-10 09:06:46[虎门转站仓]已发出，下一站[广州分流集中处]<br />
+						2017-7-10 09:06:46[广州分流集中处]已发出，下一站[广州佛山]<br />
+						2017-7-10 09:06:46[广州佛山]已发出，物流派送中，请保持电话通畅，运输员张山，手机号：18754654456<br />
+						2017-7-10 09:06:46订单结束，感谢你选择[德邦物流]，祝你生活愉快
+					</th>
+				</tr>
+				
+			</table>
+				
+		</div>
+		
+		<!--黑色背景-->
+		<div id="dark_bg"></div>
+		<!--登录界面-->
+		<div id="user_entry">
+			<h1>账号登录<span class="close">返回</span></h1>
+			<p>手机/邮箱登录：</p><input type="text" name="user_entry_text" id="user_entry_text" value="" /><br />
+			<p>密码：</p><input type="password" name="user_entry_password" id="user_entry_password" value="" />
+			<p id="sign_in_tips"></p>
+			<input type="button" name="user_entry_btn" id="user_entry_btn" value="登录" />
+			
+			<span id="fast_registration">快速注册</span>
+			<span id="forget_password">忘记密码</span>
+			
+		</div>
+		
+		<!--登录成功界面-->
+		<div id="user_entry_in">
+			<p>登录成功！</p>
+			<span></span>
+			<p>将在 <span id="user_entry_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--快速注册-->
+		<div id="user_register">
+			<h1>快速注册<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="user_register_text" id="user_register_text" value="" placeholder="请输入手机号"/><br />
+			<p>密码：</p><input type="password" name="user_register_password" id="user_register_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level"></span><br />
+			<p>确认密码：</p><input type="password" name="user_register_password" id="user_register_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<span id="user_register_tips1"></span>
+			<span id="user_register_tips2"></span>
+			<span id="user_register_tips3"></span>
+			<!--全部条件满足时，按钮变为蓝色,鼠标移经时变为手型-->
+			<input type="button" name="user_register_btn" id="user_register_btn" value="注册" />
+		</div>
+		
+		<!--购买成功-->
+		<div id="Buy_success">
+			<p>购买成功！</p>
+			<span></span>
+			<p>将在 <span id="Buy_success_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--忘记密码-->
+		<div id="forget_password_page">
+			<h1>忘记密码<span class="close">返回</span></h1>
+			<p>手机：</p><input type="text" name="forget_password_page_text" id="forget_password_page_text" value="" placeholder="请输入手机号"/><br />
+			<p>验证码：</p><input type="text" name="Verification_Code_text" id="Verification_Code_text" value="" /><input type="button" name="" id="Verification_Code" value="获取验证码" /><span id="forget_password_page_tip">验证码错误!</span><br />
+			<p>新密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password1" value="" placeholder="请输入6-15位字母或数字"/><span id="register_password_level">弱</span><br />
+			<p>确认密码：</p><input type="password" name="forget_password_page_password" id="forget_password_page_password2" value="" placeholder="请输入6-15位字母或数字"/>
+			<input type="button" name="forget_password_page_btn" id="forget_password_page_btn" value="完成" />
+			<span id="forget_password_page_tip2">验证码不能为空！</span>
+			<span id="forget_password_page_tip3">不能输入空格或其他非法字符！</span>
+			<span id="forget_password_page_tip4">两次密码不一致，请重新输入！</span>
+		</div>
+		
+		<!--修改密码成功-->
+		<div id="change_password">
+			<p>修改成功！</p>
+			<span></span>
+			<p>将在 <span id="change_password_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<!--注册成功-->
+		<div id="user_register_in">
+			<p>注册成功！</p>
+			<span></span>
+			<p>将在 <span id="user_register_in_time">3</span> 秒后返回首页</p>
+			<a href="index.html">点击跳转</a>
+		</div>
+		
+		<footer>
+			<p>联系电话</p>
+			<p>0771-12345678</p>
+			<p>友情链接</p>
+			<ul>
+				<li><a href="#">淘宝网</a>|</li>
+				<li><a href="#">天猫</a>|</li>
+				<li><a href="#">聚划算</a>|</li>
+				<li><a href="#">1688</a>|</li>
+				<li><a href="#">阿里妈妈</a>|</li>
+				<li><a href="#">飞猪</a>|</li>
+				<li><a href="#">YunOS</a>|</li>
+				<li><a href="#">阿里通信</a>|</li>
+				<li><a href="#">万网</a>|</li>
+				<li><a href="#">高德</a>|</li>
+				<li><a href="#">友盟</a>|</li>
+				<li><a href="#">虾米</a>|</li>
+				<li><a href="#">阿里星球</a>|</li>
+				<li><a href="#">来往</a>|</li>
+				<li><a href="#">钉钉</a>|</li>
+				<li><a href="#">支付宝</a></li>
+			</ul>
+			<p>© 2010-2017 V-HOME 版权所有，并保留所有权利</p>
+			<p>ICP备案证书号：桂ICP备08008334号</p>
+
+		</footer>
+	</body>
+</html>

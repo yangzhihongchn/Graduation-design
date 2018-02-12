@@ -1,0 +1,114 @@
+img{
+	border: 0;
+}
+
+.NewsRecommend_main{
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.NewsRecommend_goods_border{
+	width: 100%;
+	margin-top: 90px;
+	height: 474px;
+}
+
+.NewsRecommend_goods_pic{
+	float: left;
+	display: inline-block;
+	width: 60%;
+	max-width: 1000px;
+	height: 474px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.NewsRecommend_goods_message{
+	float: left;
+	width: 40%;
+	height: 474px;
+	max-height: 640px;
+	background: url(../images/NewsRecommend/32a714f08572736c02dee8d75327c667bff340b8581a-8kTcUX_fw658.jpg) no-repeat 0 bottom;
+	background-size: 100%;
+	overflow: hidden;
+}
+
+.NewsRecommend_goods_message_p1, .NewsRecommend_goods_message_p2, .NewsRecommend_goods_message_p3, .NewsRecommend_goods_message_p4{
+	display: block;
+	float: left;
+	width: 39.5%;
+	height: 28%;
+	/*background: url(../images/NewsRecommend.html/goods_message_p1.jpg) no-repeat;*/
+	margin: 26px 0 0 31px;
+	
+}
+
+.NewsRecommend_goods_message_p1, .NewsRecommend_goods_message_p1:hover,.NewsRecommend_goods_message_p2:hover,.NewsRecommend_goods_message_p3:hover,.NewsRecommend_goods_message_p4:hover{
+	border: 1px solid #f42e2e;
+}
+
+
+.NewsRecommend_goods_message p{
+	float: left;
+	font-size: 16px;
+	color: #FFFFFF;
+	margin-left: 30px;
+	margin-top: 16px;
+	width: 90%;
+}
+
+.NewsRecommend_goods_message span:nth-of-type(1){
+	margin: 32px 0 0 30px;
+	width: 102px;
+	height: 36px;
+	display: block;
+	background: #f42e2e;
+	color: #FFFFFF;
+	font-size: 18px;
+	text-align: center;
+	line-height: 36px;
+	float: left;
+}
+
+.NewsRecommend_goods_message span:nth-of-type(2){
+	display: inline-block;
+	margin-left: 46px;
+	margin-top: 47px;
+	font-size: 18px;
+	text-decoration: line-through;
+	color: #FFFFFF;
+}
+
+.NewsRecommend_goods_message span:nth-of-type(3){
+	font-size: 36px;
+	color: #FFFFFF;
+}
+
+.NewsRecommend_goods_border4, .NewsRecommend_goods_border5, .NewsRecommend_goods_border6{
+	display: none;
+}
+
+#more{
+	display: block;
+	font-size: 24px;
+	color: #dd2f37;
+	text-align: center;
+	line-height: 22px;
+	margin: 112px auto 35px;
+	cursor: pointer;
+}
+
+#returnTop{
+	width: 60px;
+	height: 60px;
+	background-color: #282828;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-radius: 10px;
+	position: fixed;
+	left: 50%;
+	top: 55%;
+	margin-left: 42%;
+	background-image: url(../images/returnTop.png);
+}
+
